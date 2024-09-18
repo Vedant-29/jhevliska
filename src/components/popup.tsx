@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { Button } from "./ui/button";
 
 const Popup = ({ onCorrectAnswer }: { onCorrectAnswer: () => void }) => {
   const [answer, setAnswer] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (answer.toLowerCase() === "correct answer") {
+    if (answer.toLowerCase() === "8669269811") {
       onCorrectAnswer();
     } else {
       alert("Wrong answer! Try again.");
@@ -17,16 +18,18 @@ const Popup = ({ onCorrectAnswer }: { onCorrectAnswer: () => void }) => {
       <div className="bg-white p-6 rounded shadow-lg">
         <h2 className="text-xl mb-4">Answer to increase your budget by Rs. 1000!</h2>
         <form onSubmit={handleSubmit}>
-          <label className="block mb-2">What’s your favorite color?</label>
+          <label className="block mb-2">Vedu cha Phone Number kay ashto</label>
           <input
             type="text"
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}
             className="border px-4 py-2 rounded w-full mb-4"
           />
-          <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+           <Button
+            className="bg-pink-500 hover:bg-pink-600 transform hover:-translate-y-1 transition duration-300 w-full mt-2"
+          >
             Submit
-          </button>
+          </Button>
         </form>
       </div>
     </div>
