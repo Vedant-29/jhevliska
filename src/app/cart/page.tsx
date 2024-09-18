@@ -32,7 +32,7 @@ const CartPage = () => {
                 className="flex justify-between items-center bg-gray-100 p-4 rounded-lg shadow-sm"
               >
                 <div className="flex items-center space-x-4">
-                  <Image
+                  <img
                     src={item.imageUrl}
                     alt={item.name}
                     className="w-16 h-16 rounded object-cover"
