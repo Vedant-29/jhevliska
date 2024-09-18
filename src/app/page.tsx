@@ -39,12 +39,12 @@ export default function Home() {
       ) : null}
       {state2 ? (
         <div className="w-80">
-          <Label htmlFor="email">Tuzha Nao Tak</Label>
+          <Label htmlFor="email">Tuzha Nao Kay Aahe</Label>
           <Input type="text" placeholder="This better be sohu " className="mt-2 w-full" value={password}
             onChange={(e) => setPassword(e.target.value)} />
           <Button
             className="bg-pink-500 hover:bg-pink-600 transform hover:-translate-y-1 transition duration-300 w-full mt-2"
-            onClick={() => handlePasswordCheck("password", () => {
+            onClick={() => handlePasswordCheck("sohu", () => {
               setState2(false);
               setState3(true);
             })}
@@ -60,7 +60,7 @@ export default function Home() {
             onChange={(e) => setPassword(e.target.value)} />
           <Button
             className="bg-pink-500 hover:bg-pink-600 transform hover:-translate-y-1 transition duration-300 w-full mt-2"
-            onClick={() => handlePasswordCheck("password", () => {
+            onClick={() => handlePasswordCheck("babdi", () => {
               setState3(false);
               router.push("/selection");
             })}
