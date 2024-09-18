@@ -1,101 +1,75 @@
+"use client"
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const router = useRouter();
+  const [state1, setState1] = useState(true);
+  const [state2, setState2] = useState(false);
+  const [state3, setState3] = useState(false);
+  const [password, setPassword] = useState("");
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  const handlePasswordCheck = (expectedPassword: string, nextStateSetter: () => void) => {
+    if (password === expectedPassword) {
+      nextStateSetter();
+      setPassword("");
+    } else {
+      alert("Incorrect password");
+    }
+  };
+
+  return (
+    <div className="flex items-center justify-center h-screen">
+      {state1 ? (
+        <div>
+          <Button
+            className="bg-pink-500 hover:bg-pink-600 transform hover:-translate-y-1 transition duration-300 mt-2 "
+            onClick={() => {
+              setState1(false);
+              setState2(true);
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            Who is this ?
+          </Button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      ) : null}
+      {state2 ? (
+        <div className="w-80">
+          <Label htmlFor="email">Tuzha Nao Tak</Label>
+          <Input type="text" placeholder="This better be sohu " className="mt-2 w-full" value={password}
+            onChange={(e) => setPassword(e.target.value)} />
+          <Button
+            className="bg-pink-500 hover:bg-pink-600 transform hover:-translate-y-1 transition duration-300 w-full mt-2"
+            onClick={() => handlePasswordCheck("password", () => {
+              setState2(false);
+              setState3(true);
+            })}
+          >
+            Submit
+          </Button>
+        </div>
+      ) : null}
+      {state3 ? (
+        <div className="w-80">
+          <Label htmlFor="phone">Tuzha bf cha Nao kay Ashto</Label>
+          <Input type="phone" placeholder="If you don't know then toh.." className="mt-2 w-full" value={password}
+            onChange={(e) => setPassword(e.target.value)} />
+          <Button
+            className="bg-pink-500 hover:bg-pink-600 transform hover:-translate-y-1 transition duration-300 w-full mt-2"
+            onClick={() => handlePasswordCheck("password", () => {
+              setState3(false);
+              router.push("/selection");
+            })}
+          >
+            Submit
+          </Button>
+        </div>
+      ) : null}
     </div>
   );
 }
