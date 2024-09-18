@@ -1,8 +1,8 @@
-"use client"
-
 import { useCart } from '@/context/cartContext';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { AiOutlineClose } from 'react-icons/ai';
+
 
 interface CartItem {
   id: number;
@@ -49,8 +49,18 @@ const CartPage = () => {
               </div>
             ))}
           </div>
+          <div className="border-t border-gray-300 mt-6 pt-4 flex justify-between items-center">
+            <h2 className="text-xl font-semibold text-gray-800">Total: Rs. {total}</h2>
+          </div>
         </div>
       )}
+      <button
+        className="mt-6 flex items-center text-gray-600 hover:text-gray-800 transition-colors"
+        onClick={() => router.push("/selection")}
+      >
+        <AiOutlineClose size={24} className="mr-2" />
+        Continue Shopping
+      </button>
     </div>
   );
 };
