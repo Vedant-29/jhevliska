@@ -34,7 +34,7 @@ const CartPage = () => {
                   <img
                     src={item.imageUrl}
                     alt={item.name}
-                    className="w-16 h-16 rounded object-cover"
+                    className="w-20 h-20 rounded object-cover"
                   />
                   <div>
                     <p className="text-lg font-medium text-gray-800">{item.name}</p>
