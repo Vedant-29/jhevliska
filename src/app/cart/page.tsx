@@ -1,9 +1,15 @@
-"use client";
+"use client"
 
 import { useCart } from '@/context/cartContext';
-import React from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
-import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+
+interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+  imageUrl: string;
+}
 
 const CartPage = () => {
   const { cart, total, removeFromCart } = useCart();
@@ -18,13 +24,13 @@ const CartPage = () => {
       ) : (
         <div className="w-full max-w-2xl bg-white shadow-lg rounded-lg p-4">
           <div className="space-y-4">
-            {cart.map((item: any, index: number) => (
+            {cart.map((item: CartItem, index: number) => (
               <div
                 key={index}
                 className="flex justify-between items-center bg-gray-100 p-4 rounded-lg shadow-sm"
               >
                 <div className="flex items-center space-x-4">
-                  <img
+                  <Image
                     src={item.imageUrl}
                     alt={item.name}
                     className="w-16 h-16 rounded object-cover"
@@ -43,26 +49,8 @@ const CartPage = () => {
               </div>
             ))}
           </div>
-
-          {/* <div className="border-t border-gray-300 mt-6 pt-4 flex justify-between items-center">
-            <h2 className="text-xl font-semibold text-gray-800">Total: Rs. {total}</h2>
-            <button
-              className="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition-colors"
-              onClick={() => router.push("/checkout")}
-            >
-              Proceed to Checkout
-            </button>
-          </div> */}
         </div>
       )}
-
-      <button
-        className="mt-6 flex items-center text-gray-600 hover:text-gray-800 transition-colors"
-        onClick={() => router.push("/selection")}
-      >
-        <AiOutlineClose size={24} className="mr-2" />
-        Continue Shopping
-      </button>
     </div>
   );
 };

@@ -2,14 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import GiftCard from "./gift-card";
-import { useRouter } from "next/navigation";
 import Popup from "./popup"; // Popup component for Rs. 6000 budget upgrade
 import { useCart } from "@/context/cartContext";
 import { motion } from "framer-motion"; // For animations
 import { Button } from "./ui/button";
 import Link from "next/link";
 
-const giftCards = [
+const giftCards: GiftCard[] = [
   {
     id: 1,
     name: "Fitted T-shirt",
@@ -276,14 +275,22 @@ const giftCards = [
   }
 ];
 
+
+interface GiftCard {
+  id: number;
+  name: string;
+  price: number;
+  imageUrl: string;
+  description: string;
+}
+
 const GiftCardList = () => {
-  const router = useRouter();
   const { cart, total, addToCart } = useCart(); // Access cart context
-  const [visibleGiftCards, setVisibleGiftCards] = useState<any[]>([]);
+  const [visibleGiftCards, setVisibleGiftCards] = useState<GiftCard[]>([]);
   const [showPopup, setShowPopup] = useState(false);
   const [budget, setBudget] = useState(5000);
   const [shownCardIds, setShownCardIds] = useState<number[]>([]); // Track shown card IDs
-  const [timer, setTimer] = useState(3); // Timer for countdown
+  const [timer, setTimer] = useState(3);
 
   const getRandomGiftCards = () => {
     const availableCards = giftCards.filter(

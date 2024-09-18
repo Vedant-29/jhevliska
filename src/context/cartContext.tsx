@@ -2,10 +2,17 @@
 
 import React, { createContext, useState, useContext, ReactNode } from "react";
 
+interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+  imageUrl: string;
+}
+
 type CartContextType = {
-  cart: any[];
+  cart: CartItem[];
   total: number;
-  addToCart: (item: any) => void;
+  addToCart: (item: CartItem) => void;
   removeFromCart: (id: number) => void;
 };
 
@@ -20,10 +27,10 @@ export const useCart = () => {
 };
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [cart, setCart] = useState<any[]>([]);
+  const [cart, setCart] = useState<CartItem[]>([]);
   const [total, setTotal] = useState(0);
 
-  const addToCart = (item: any) => {
+  const addToCart = (item: CartItem) => {
     setCart((prevCart) => [...prevCart, item]);
     setTotal((prevTotal) => prevTotal + item.price);
   };
